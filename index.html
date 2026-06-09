@@ -1,6 +1,155 @@
-Navigation avec logo IncorpUS
-4 étapes : État & Forfait → Entreprise → Vous → Paiement
-8 États au choix (Wyoming, Delaware, Florida...)
-3 forfaits : Starter $149 / Business $179 / Premium $199
-Bouton PayPal pour le paiement
-Page de confirmation finale
+[20:59, 6/8/2026] Kevin: Crée un site web professionnel moderne et entièrement fonctionnel spécialisé dans la création et la gestion de LLC aux États-Unis en ligne.
+🎯 Objectif du site :
+Le site doit permettre aux utilisateurs de :
+Créer une LLC aux USA en ligne
+Obtenir des informations sur les démarches légales
+Commander un service de création d’entreprise
+Suivre leur demande en temps réel
+Contacter un support via chatbot intelligent
+💻 Design du site :
+Style moderne, premium et professionnel (couleurs bleu, blanc, noir)
+Interface simple et très intuitive
+Optimisé mobile et desktop
+Effet “trust / business corporate”
+📄 Pages obligatoires :
+1. Accueil
+Présentation du service
+Bouton “Créer ma LLC maintenant”
+Section avantages (rapide, sécurisé, fiable)
+2. Services
+Création LLC
+Obtention …
+[21:19, 6/8/2026] Kevin: export default function Home() {
+  return (
+    <div style={{
+      fontFamily:"Arial",
+      padding:"60px",
+      background:"#0f172a",
+      color:"white",
+      minHeight:"100vh"
+    }}>
+      <h1 style={{fontSize:"40px"}}>
+        Create your LLC in the USA online
+      </h1>
+
+      <p style={{fontSize:"18px", opacity:0.8}}>
+        Fast, secure, automated business registration service
+      </p>
+
+      <a href="/create" style={{
+        padding:"15px 25px",
+        background:"#22c55e",
+        color:"white",
+        display:"inline-block",
+        marginTop:"20px",
+        borderRadius:"8px"
+      }}>
+        Start Now
+      </a>
+    </div>
+  );
+}
+🧾 3. FORMULAIRE LLC PRO
+import { useState } from "react";
+
+export default function Create() {
+  const [form, setForm] = useState({
+    name:"",
+    email:"",
+    state:"",
+    type:"LLC"
+  });
+
+  return (
+    <div style={{padding:"40px"}}>
+      <h2>Create your LLC</h2>
+
+      <input placeholder="Business name"
+        onChange={(e)=>setForm({...form,name:e.target.value})}
+      />
+
+      <br/><br/>
+
+      <input placeholder="Email"
+        onChange={(e)=>setForm({...form,email:e.target.value})}
+      />
+
+      <br/><br/>
+
+      <select onChange={(e)=>setForm({...form,state:e.target.value})}>
+        <option>Maryland</option>
+        <option>Texas</option>
+        <option>Florida</option>
+      </select>
+
+      <br/><br/>
+
+      <a href="/pay">
+        <button>Continue to payment</button>
+      </a>
+    </div>
+  );
+}
+💳 4. PAIEMENT STRIPE (PRO)
+export default function Pay() {
+
+  const pay = async () => {
+    const res = await fetch("/api/stripe", {
+      method:"POST"
+    });
+
+    const data = await res.json();
+    window.location.href = data.url;
+  };
+
+  return (
+    <div style={{padding:"40px"}}>
+      <h2>Secure Payment</h2>
+      <p>Complete your LLC order</p>
+
+      <button
+        onClick={pay}
+        style={{padding:"15px 20px", background:"black", color:"white"}}
+      >
+        Pay Now
+      </button>
+    </div>
+  );
+}
+🤖 5. CHATBOT IA (STYLE PRO)
+export default function Chatbot() {
+  return (
+    <div style={{
+      position:"fixed",
+      bottom:"20px",
+      right:"20px",
+      background:"white",
+      padding:"15px",
+      borderRadius:"10px",
+      width:"250px"
+    }}>
+      🤖 Business AI Assistant
+
+      <p style={{fontSize:"12px"}}>
+        Ask me about LLC, EIN, or business setup in the USA
+      </p>
+    </div>
+  );
+}
+⚙️ 6. DÉPLOIEMENT VERCEL
+Crée compte :
+Vercel
+Upload sur GitHub
+Connecte GitHub à Vercel
+Clique “Deploy”
+🌐 7. METTRE SUR GOOGLE
+Google Search Console
+Ajoute ton site
+Clique “Indexation”
+Attends 24–72h
+💳 8. AJOUT STRIPE RÉEL (IMPORTANT)
+Stripe
+Tu dois :
+créer compte Stripe
+connecter ton bank account
+activer “Checkout”
